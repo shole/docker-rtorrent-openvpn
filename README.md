@@ -1,3 +1,28 @@
+# rtorrent with openvpn
+
+based on transmission version by Kristian Haugene
+
+to make startup easy, edit dockrtorrent.sh.template to contain your credentials, or look inside to see what's needed
+
+this is primarily configured to use nordvpn servers (ip check is nordvpn) so your mileage with defaults might vary
+
+i maintain this for my personal use so don't expect wide support
+
+## some folders
+
+* /download - download-to folder
+ 
+* /watch - watch folder - if defined in rtorrent
+ 
+* /root - home path for rtorrent to save config and session files
+ 
+* /ovpn - path for openvpn files
+
+
+
+# stuff below is the original readme
+---------
+
 # Transmission with WebUI and OpenVPN
 Docker container which runs Transmission torrent client with WebUI while connecting to OpenVPN. 
 It bundles certificates and configurations for the following VPN providers:
