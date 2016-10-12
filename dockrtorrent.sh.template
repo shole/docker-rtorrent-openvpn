@@ -1,0 +1,28 @@
+USERID=$(id -u)
+USERNAME=$USER
+
+
+sudo docker stop dockrtorrent
+
+sudo docker rm dockrtorrent
+
+sudo docker run --privileged \
+ --name dockrtorrent \
+ -v ~/torrents:/download \
+ -v ~/download:/watch \
+ -v ~/dockrtorrentconf/home:/root \
+ -v ~/dockrtorrentconf/nordvpn:/ovpn \
+ -P \
+ -e "VPN_HOSTNAME=xxxx.nordvpn.com" \
+ -e "VPN_PORT=1194" \
+ -e "OPENVPN_OVPN=xxxx.nordvpn.com.udp1194.ovpn" \
+ -e "OPENVPN_USERNAME=xxxxxx_change_me" \
+ -e "OPENVPN_PASSWORD=xxxxxx_definitely_change_me" \
+ -e "RESOLV_OVERRIDE=nameserver 8.8.8.8\nnameserver 8.8.4.4\n" \
+ -e "TERM=$TERM" \
+ -e "USERID=$USERID" \
+ -e "USERNAME=$USERNAME" \
+ -d rtorrent-openvpn
+
+
+sudo docker exec -it dockrtorrent /etc/rtorrent/start.sh

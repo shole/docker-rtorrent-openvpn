@@ -1,21 +1,16 @@
 openvpn:
-  image: haugene/transmission-openvpn
+  image: shole/rtorrent-openvpn
   privileged: true
   ports:
     - "9091:9091"
   volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /your/storage/path/:/data
-  environment:
+    - /your/storage/path/:/download
+    - /your/watch/path/:/watch
+    - /your/config/path/:/config
+    - /your/ovpn/files/:/vpn
+
+    environment:
     OPENVPN_PROVIDER: PIA
     OPENVPN_USERNAME: username
     OPENVPN_PASSWORD: password
-
-
-nginx:
-  image: library/nginx
-  ports:
-     - "8080:8080"
-  volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - /path/to/nginx.conf:/etc/nginx/nginx.conf:ro
